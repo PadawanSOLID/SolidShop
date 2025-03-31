@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidShop.WPF", "SolidShop.WPF\SolidShop.WPF.csproj", "{04FC10C5-3E75-4208-ACC7-37212096D0A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidShop.Webapi", "SolidShop.Webapi\SolidShop.Webapi.csproj", "{652F042D-6ED5-4397-AA87-EBF5B37EE8B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04FC10C5-3E75-4208-ACC7-37212096D0A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04FC10C5-3E75-4208-ACC7-37212096D0A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04FC10C5-3E75-4208-ACC7-37212096D0A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04FC10C5-3E75-4208-ACC7-37212096D0A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{652F042D-6ED5-4397-AA87-EBF5B37EE8B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{652F042D-6ED5-4397-AA87-EBF5B37EE8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{652F042D-6ED5-4397-AA87-EBF5B37EE8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{652F042D-6ED5-4397-AA87-EBF5B37EE8B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B98AF81-7C24-4822-B4C0-B8252C122999}
+	EndGlobalSection
+EndGlobal

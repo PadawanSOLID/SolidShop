@@ -1,0 +1,6 @@
+@SolidShop.Webapi_HostAddress = http://localhost:5290
+
+GET {{SolidShop.Webapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

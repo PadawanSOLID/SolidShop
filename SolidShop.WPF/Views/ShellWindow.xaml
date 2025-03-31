@@ -1,0 +1,37 @@
+﻿<ui:FluentWindow x:Class="SolidShop.WPF.Views.ShellWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
+        xmlns:viewmodels="clr-namespace:SolidShop.WPF.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:ShellViewModel,IsDesignTimeCreatable=True}"
+        WindowStartupLocation="CenterScreen"
+        Height="800" 
+        ExtendsContentIntoTitleBar="True"
+        Width="1200">
+    <Grid>
+        <ui:NavigationView  
+            Name="navi"
+            MenuItemsSource="{Binding MenuItems}" 
+            FooterMenuItemsSource="{Binding FootItems}">
+            <ui:NavigationView.Header>
+                <Border Margin="0,40,0,0"/>
+            </ui:NavigationView.Header>
+            <ui:NavigationView.ContentOverlay>
+                <ui:SnackbarPresenter x:Name="SnackbarPresenter" />
+            </ui:NavigationView.ContentOverlay>
+        </ui:NavigationView>
+        <ui:TitleBar  
+            VerticalContentAlignment="Center"
+            Margin="35,0,0,0"  
+            Title="{Binding Title}"
+            CloseWindowByDoubleClickOnIcon="True">
+            <ui:TitleBar.Icon>
+                <ui:SymbolIcon Symbol="DarkTheme24"/>
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+    </Grid>
+</ui:FluentWindow>
