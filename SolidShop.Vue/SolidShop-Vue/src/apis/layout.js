@@ -1,9 +1,7 @@
 import httpInstance from "@/utils/http";
 
-function getCategory() {
+export function getCategoryAPI() {
     return httpInstance({
         url: '/good/getCategory'
     })
 }
-
-export default getCategory
