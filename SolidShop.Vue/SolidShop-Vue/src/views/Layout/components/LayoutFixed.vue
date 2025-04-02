@@ -1,9 +1,9 @@
 <template>
-    <div class="app-header-sticky" :class="{show:y>78}">
+    <div class="app-header-sticky" :class="{ show: y > 78 }">
         <div class="container">
             <RouterLink class="logo" to="/" />
             <ul class="app-header-nav">
-                <li class="home" v-for="item in categoryList" :key="item.id">
+                <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
                     <RouterLink to="/">{{ item.name }}</RouterLink>
                 </li>
             </ul>
@@ -18,8 +18,9 @@
 <script setup>
 import { useScroll } from '@vueuse/core'
 import { useCategoryStore } from '@/stores/category.js'
-const {categoryList}=useCategoryStore()
-console.log('LayoutFixed:',categoryList)
+const categoryStore = useCategoryStore()
+
+
 const { y } = useScroll(window)
 </script>
 

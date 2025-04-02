@@ -14,7 +14,7 @@ namespace SolidShop.Webapi.Controllers
         public IEnumerable<GoodsCategory> GetCategory()
         {
             string[] names = [
-              "推荐",
+                "推荐",
                 "电脑办公",
                 "房产",
                 "配饰",
@@ -34,6 +34,37 @@ namespace SolidShop.Webapi.Controllers
             });
             return categories;
 
+        }
+
+        [HttpGet]
+        public IEnumerable<string> GetBanner()
+        {
+            return Enumerable.Range(1, 5).Select(n => $"banner{n}.png");
+        }
+
+        [HttpGet]
+        public IEnumerable<Good> FindNew()
+        {
+            (string, decimal)[] names = [
+                ("叫叫鞋",259),
+                ("儿童运动鞋",109),
+                ("男童加绒格子衬衫",125),
+                ("休闲潮流运动男士胸包",136),
+            ];
+            return Enumerable.Range(0, 4).Select(n => new Good
+            {
+                Id = n,
+                CreateTime = DateTime.Now,
+                Price = names[n].Item2,
+                Name = names[n].Item1,
+                Image = $"new{n + 1}.jpg"
+            });
+        }
+        [HttpGet]
+        public IEnumerable<()> GetGoodsProduct()
+        {
+            var goodsProduct= Enumerable.Range(0, 5).Select(n => FindNew()).SelectMany(x => x).GroupBy(m=>m.Id);
+            return goodsProduct;
         }
     }
 }

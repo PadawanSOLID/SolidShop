@@ -1,7 +1,7 @@
 <template>
     <div class="home-category">
         <ul class="menu">
-            <li v-for="item in categoryList" :key="item.id">
+            <li v-for="item in categoryStore.categoryList" :key="item.id">
                 <RouterLink to="/">{{ item.name }}</RouterLink>
                 <RouterLink v-for="i in 2" :key="i" to="/">南北干货</RouterLink>
                 <div class="layer">
@@ -25,8 +25,8 @@
 </template>
 
 <script setup>
-import {useCategoryStore} from '@/stores/category'
-const {categoryList}=useCategoryStore();
+import { useCategoryStore } from '@/stores/category'
+const categoryStore = useCategoryStore();
 </script>
 
 <style lang="scss" scoped>
@@ -54,6 +54,10 @@ const {categoryList}=useCategoryStore();
                 background-color: #009927;
             }
 
+            &:hover>.layer {
+                display: block;
+            }
+
             a {
                 padding: 0 6px;
                 color: #e6e6e6;
@@ -64,6 +68,7 @@ const {categoryList}=useCategoryStore();
         .layer {
             background-color: white;
             position: absolute;
+            display: none;
             left: 280px;
             width: 950px;
             top: 0;

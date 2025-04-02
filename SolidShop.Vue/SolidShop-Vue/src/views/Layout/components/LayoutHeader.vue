@@ -5,7 +5,7 @@
                 <RouterLink to="/">小兔鲜</RouterLink>
             </h1>
             <ul class="app-header-nav">
-                <li v-for="item in categoryList" :key="item.id">
+                <li v-for="item in categoryStore.categoryList" :key="item.id">
                     <RouterLink to="/">{{ item.name }}</RouterLink>
                 </li>
             </ul>
@@ -19,8 +19,7 @@
 
 <script setup>
 import { useCategoryStore } from '@/stores/category.js'
-const { categoryList } = useCategoryStore()
-console.log("LayoutHeader",categoryList)
+const categoryStore = useCategoryStore()
 </script>
 
 <style lang="scss" scoped>
