@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SolidShop.Model.Entities;
+using SolidShop.Model.Models;
 
 namespace SolidShop.Webapi.Controllers
 {
@@ -10,16 +11,39 @@ namespace SolidShop.Webapi.Controllers
     {
         public GoodController() { }
 
-        [HttpGet]
-        public IEnumerable<GoodsCategory> GetCategory()
-        {
-            string[] names = [
-                "推荐",
+        string[] categoryNames = [
+               "推荐",
                 "电脑办公",
                 "房产",
                 "配饰",
                 "厨具",
             ];
+        (string, decimal)[] goods = [
+               ("叫叫鞋",259),
+                ("儿童运动鞋",109),
+                ("男童加绒格子衬衫",125),
+                ("休闲潮流运动男士胸包",136),
+            ];
+
+        [HttpGet]
+        public GoodsCategory FindCategory(int id)
+        {
+            var category = new GoodsCategory
+            {
+                Id = id,
+                CreateTime = DateTime.Now,
+                Image = "",
+                IsShown = true,
+                ParentId = -1,
+                Name = categoryNames[id]
+            };
+            return category;
+        }
+
+        [HttpGet]
+        public IEnumerable<GoodsCategory> GetCategory()
+        {
+
             var categories = Enumerable.Range(0, 5).Select(n =>
             {
                 return new GoodsCategory
@@ -29,7 +53,7 @@ namespace SolidShop.Webapi.Controllers
                     Image = "",
                     IsShown = true,
                     ParentId = -1,
-                    Name = names[n]
+                    Name = categoryNames[n]
                 };
             });
             return categories;
@@ -45,25 +69,34 @@ namespace SolidShop.Webapi.Controllers
         [HttpGet]
         public IEnumerable<Good> FindNew()
         {
-            (string, decimal)[] names = [
-                ("叫叫鞋",259),
-                ("儿童运动鞋",109),
-                ("男童加绒格子衬衫",125),
-                ("休闲潮流运动男士胸包",136),
-            ];
+
             return Enumerable.Range(0, 4).Select(n => new Good
             {
                 Id = n,
                 CreateTime = DateTime.Now,
-                Price = names[n].Item2,
-                Name = names[n].Item1,
+                Price = goods[n].Item2,
+                Name = goods[n].Item1,
                 Image = $"new{n + 1}.jpg"
             });
         }
+
         [HttpGet]
-        public IEnumerable<()> GetGoodsProduct()
+        public IEnumerable<CategoryWithGoods> GetGoods()
         {
-            var goodsProduct= Enumerable.Range(0, 5).Select(n => FindNew()).SelectMany(x => x).GroupBy(m=>m.Id);
+
+            var goodsProduct = categoryNames.Select((n, i) => new CategoryWithGoods
+            {
+                Id = i + 1,
+                Name = n,
+                Goods = Enumerable.Range(0, 4).Select(m => new Good
+                {
+                    Id = m,
+                    CreateTime = DateTime.Now,
+                    Price = goods[m].Item2,
+                    Name = goods[m].Item1,
+                    Image = $"new{m + 1}.jpg"
+                }).ToList()
+            });
             return goodsProduct;
         }
     }

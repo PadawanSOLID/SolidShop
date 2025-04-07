@@ -20,13 +20,15 @@
 <script setup>
 import HomePanel from './HomePanel.vue'
 import GoodsItem from './GoodsItem.vue'
-import getGoodsAPI from '@/apis/home'
+import {getGoodsAPI} from '@/apis/home'
 import { ref, onMounted } from 'vue'
 const goodsProduct = ref([])
 
 const getGoods = async () => {
     const res = await getGoodsAPI()
+    console.log("get goods",res)
     goodsProduct.value = res
+
 }
 
 
@@ -102,6 +104,12 @@ onMounted(() => {
                 }
             }
         }
+    }
+
+    .goods-list{
+        width: 990px;
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 </style>
