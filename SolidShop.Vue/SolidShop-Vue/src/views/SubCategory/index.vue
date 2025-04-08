@@ -3,8 +3,9 @@
         <div class="bread-container">
             <el-breadcrumb separator=">">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: '/' }">居家</el-breadcrumb-item>
-                <el-breadcrumb-item>居家生活用品</el-breadcrumb-item>
+                <el-breadcrumb-item
+                    :to="{ path: `/category/${categoryData.parentId}` }">{{ categoryData.id }}</el-breadcrumb-item>
+                <el-breadcrumb-item>{{ categoryData.name }}</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="sub-container">
@@ -14,7 +15,7 @@
                 <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
             </el-tabs>
             <div class="body">
-
+                <GoodsItem v-for="good in goodList" :good :key="good.id" />
             </div>
         </div>
 
@@ -22,6 +23,30 @@
 </template>
 
 <script setup>
+import { getSubCategoryAPI } from '@/apis/category';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { getCategoryFilterAPI } from '../Category/components/useBanner';
+import GoodsItem from '../Home/components/GoodsItem.vue';
+const categoryData = ref({})
+const route = useRoute()
+const getCategoryData = async () => {
+    const res = await getCategoryFilterAPI(route.params.id)
+    categoryData.value = res
+}
+onMounted(() => getCategoryData())
+const goodList = ref([])
+const reqData = ref({
+    categoryId: route.params.id,
+    page: 1,
+    pageSize: 20,
+    sortField: 'publishTime'
+})
+const getGoodList = async () => {
+    const res = await getSubCategoryAPI(reqData)
+    goodList.value = res
+}
+onMounted(() => getGoodList())
 
 </script>
 

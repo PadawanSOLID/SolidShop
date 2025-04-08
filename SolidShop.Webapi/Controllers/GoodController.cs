@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SolidShop.Model.DTOs.RequestDTOs;
 using SolidShop.Model.Entities;
 using SolidShop.Model.Models;
 
@@ -53,7 +54,19 @@ namespace SolidShop.Webapi.Controllers
                     Image = "",
                     IsShown = true,
                     ParentId = -1,
-                    Name = categoryNames[n]
+                    Name = categoryNames[n],
+                    Children = Enumerable.Range(0, 5).Select(m =>
+                    {
+                        return new GoodsCategory
+                        {
+                            Id = m,
+                            CreateTime = DateTime.Now,
+                            Image = "",
+                            IsShown = true,
+                            ParentId = n,
+                            Name = categoryNames[m]
+                        };
+                    }).ToList()
                 };
             });
             return categories;
@@ -98,6 +111,20 @@ namespace SolidShop.Webapi.Controllers
                 }).ToList()
             });
             return goodsProduct;
+        }
+
+        [HttpPost]
+        public IEnumerable<Good> GetSubCategoryGoods(SubCategoryDTO sub)
+        {
+            var goods = Enumerable.Range(0, 20).Select(n => new Good
+            {
+                Id = n,
+                CreateTime = DateTime.Now,
+                Price = 100,
+                Name = "test",
+                Image = $"../../../new1.jpg"
+            });
+            return goods;
         }
     }
 }
