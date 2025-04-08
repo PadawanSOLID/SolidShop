@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using SolidShop.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,11 @@ builder.Services.AddCors(options =>
         builder.AllowAnyOrigin().AllowAnyMethod();
     });
 });
+builder.Services.AddDbContext<ShopDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

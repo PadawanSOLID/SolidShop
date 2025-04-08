@@ -8,7 +8,8 @@
       xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodels="clr-namespace:SolidShop.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:DashboardViewModel}"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DashboardView">
+      Title="DashboardView"
+      xmlns:hc="https://handyorg.github.io/handycontrol">
 
     <ui:Card VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
         <UniformGrid Rows="1">
