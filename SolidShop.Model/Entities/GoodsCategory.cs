@@ -25,6 +25,6 @@ namespace SolidShop.Model.Entities
 
         public DateTime? CreateTime { get; set; }
 
-
+        public List<GoodsCategory> Children { get; set; }
     }
 }

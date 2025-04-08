@@ -3,8 +3,9 @@
         <div class="bread-container">
             <el-breadcrumb separator=">">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item :to="{ path: `/category/${categoryData.parentId}` }">{{categoryData.id}}</el-breadcrumb-item>
-                <el-breadcrumb-item>{{categoryData.name}}</el-breadcrumb-item>
+                <el-breadcrumb-item
+                    :to="{ path: `/category/${categoryData.parentId}` }">{{ categoryData.id }}</el-breadcrumb-item>
+                <el-breadcrumb-item>{{ categoryData.name }}</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="sub-container">
@@ -14,7 +15,7 @@
                 <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
             </el-tabs>
             <div class="body">
-                <GoodsItem v-for="good in goodList" :good :key="good.id"/>
+                <GoodsItem v-for="good in goodList" :good :key="good.id" />
             </div>
         </div>
 
