@@ -42,7 +42,7 @@ namespace SolidShop.Webapi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<GoodsCategory> GetCategory()
+        public IEnumerable<GoodsCategory> GetCategories()
         {
 
             var categories = Enumerable.Range(0, 5).Select(n =>
@@ -74,9 +74,9 @@ namespace SolidShop.Webapi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<string> GetBanner()
+        public IEnumerable<string> GetBanner(int id)
         {
-            return Enumerable.Range(1, 5).Select(n => $"banner{n}.png");
+            return Enumerable.Range(1, 5).Select(n => $"/src/assets/images/banner{n}.png");
         }
 
         [HttpGet]
