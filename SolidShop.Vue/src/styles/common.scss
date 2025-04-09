@@ -1,3 +1,24 @@
-li{
+/* 重置所有元素的内外边距 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 去除列表项的默认样式 */
+ul,
+ol {
     list-style: none;
 }
+
+/* 去除链接的默认下划线和颜色 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
+
+    

@@ -1,87 +1,114 @@
 <template>
-   <header class="app-header">
-    <div class="container">
-        <h1 class="logo">
-            <RouterLink to="/">小兔鲜</RouterLink>
-        </h1>
-        <ul class="app-header-nav">
-            <li class="home">
-                <RouterLink to="/">首页</RouterLink>
-            </li>
-
-        </ul>
-        <div class="search">
-            <i class="iconfont icon-search"></i>
-            <input type="text" placeholder="搜一搜" />
+    <header class="app-header">
+        <div class="container">
+            <h1 class="logo">
+                <RouterLink to="/">小兔鲜</RouterLink>
+            </h1>
+            <ul class="app-header-nav">
+                <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
+                    <RouterLink active-class="active" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
+                </li>
+            </ul>
+            <div class="search">
+                <i class="iconfont icon-search"></i>
+                <input type="text" placeholder="搜一搜" />
+            </div>
         </div>
-    </div>
-   </header>
+    </header>
 </template>
 
 <script setup>
-
+import { useCategoryStore } from '@/stores/useCounterStore';
+const categoryStore = useCategoryStore()
 </script>
 
 <style lang="scss" scoped>
-.app-header{
-    .container{
-        ul{
+.app-header {
+    .container {
+        width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+
+
+        .logo {
+            width: 200px;
+            height: 80px;
+            background: url("@/assets/images/logo.jpg") no-repeat right 2px;
+            background-size: 160px auto;
+        }
+
+        ul {
             display: flex;
             padding-left: 40px;
             position: relative;
             z-index: 998;
-        }li{
+        }
+
+        li {
             margin-right: 40px;
             width: 38px;
             text-align: center;
-            a{
+
+            a {
                 font-size: 16px;
                 line-height: 32px;
                 height: 32px;
                 display: inline-block;
             }
-            &:hover{
-                a{
-                    color: $xtxColor;
-                    border-bottom: 1px solid $xtxColor;
-                }
-            }
-        }
-        .active{
-            a{
+
+            &:hover {
                 color: $xtxColor;
                 border-bottom: 1px solid $xtxColor;
             }
         }
+
+        .active {
+            color: $xtxColor;
+            border-bottom: 1px solid $xtxColor;
+        }
+
     }
 }
-.search{
+
+
+
+.search {
     width: 170px;
     height: 32px;
     position: relative;
     border-bottom: 1px solid #e7e7e7;
     line-height: 32px;
-    .icon-search{
-        font-size: 18px;margin-left: 5px;
+
+    .icon-search {
+        font-size: 18px;
+        margin-left: 5px;
     }
-    input{
-        width: 140px;padding-left: 5px;
+
+    input {
+        width: 140px;
+        padding-left: 5px;
         color: #666;
     }
 }
-.cart{
+
+.cart {
     width: 50px;
-    .curr{
+
+    .curr {
         height: 32px;
         line-height: 32px;
         text-align: center;
         position: relative;
         display: block;
-        .icon-cart{
+
+        .icon-cart {
             font-size: 22px;
         }
-        em{
-            font-style: normal;position: absolute;
+
+        em {
+            font-style: normal;
+            position: absolute;
             right: 0;
             top: 0;
             padding: 1px 6px;

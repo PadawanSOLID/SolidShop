@@ -34,7 +34,7 @@
 
 <style lang="scss" scoped>
 .app-topnav {
-    border-color: #333;
+    background-color: #333;
 
     ul {
         display: flex;
@@ -57,6 +57,7 @@
                 &:hover {
                     color: $xtxColor;
                 }
+                
             }
 
             ~li {

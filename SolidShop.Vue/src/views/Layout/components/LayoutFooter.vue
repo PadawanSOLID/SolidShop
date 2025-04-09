@@ -129,6 +129,10 @@ dd {
     height: 92px;
     padding: 7px;
     bottom: 1px solid #ededed;
+    img{
+        height: 80px;
+        height: 80px;
+    }
 }
 
 .download {
@@ -151,6 +155,7 @@ dd {
         border-radius: 2px;
         background-color: $xtxColor;
     }
+ 
 }
 
 

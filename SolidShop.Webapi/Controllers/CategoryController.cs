@@ -50,7 +50,7 @@ namespace SolidShop.Webapi.Controllers
             return Enumerable.Range(1, 5).Select(n => $"/src/assets/images/banner{n}.png");
         }
 
-       
+
 
     }
 }
