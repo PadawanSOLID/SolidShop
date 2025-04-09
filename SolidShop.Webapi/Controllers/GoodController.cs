@@ -113,7 +113,7 @@ namespace SolidShop.Webapi.Controllers
             return goodsProduct;
         }
 
-        [HttpPost]
+        [HttpPost("/api/category/goods/temporary")]
         public IEnumerable<Good> GetSubCategoryGoods(SubCategoryDTO sub)
         {
             var goods = Enumerable.Range(0, 20).Select(n => new Good

@@ -15,8 +15,12 @@ namespace SolidShop.Model.Models
 
         public string Image { get; set; }
 
+        public int ParentId { get; set; }
+
         public List<Good> Goods { get; set; }
 
         public List<CategoryWithGoods> Children { get; set; }
+
+        public string ParentName { get; set; }
     }
 }
