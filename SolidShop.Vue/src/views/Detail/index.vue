@@ -17,6 +17,7 @@
                 <div>
                     <div class="goods-info">
                         <div class="media">
+                            <ImageView/>
                             <ul class="goods-sales">
                                 <li>
                                     <p>销量人气</p>
@@ -102,11 +103,12 @@ import { getDetail } from '@/apis/detail';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import DetailHot from './components/DetailHot.vue';
+import ImageView from '@/components/ImageView/index.vue';
 const route = useRoute()
 const goods = ref({})
 const getGoods = async () => {
     const res = await getDetail(route.params.id)
-    goods = res
+    goods.value = res
 }
 onMounted(() => getGoods())
 </script>

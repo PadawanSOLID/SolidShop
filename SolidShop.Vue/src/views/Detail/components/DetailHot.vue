@@ -1,6 +1,6 @@
 <template>
     <div class="goods-hot">
-        <h3>周日榜单</h3>
+        <h3>{{title}}</h3>
         <RouterLink to="/" class="goods-item" v-for="item in hotList" :key="item.id">
             <img :src="item.picture" alt="">
             <p class="name">{{item.name}}</p>
@@ -12,13 +12,18 @@
 
 <script setup>
 import { getHotGoodsAPI } from '@/apis/detail';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref,computed } from 'vue';
 import { useRoute } from 'vue-router';
 const props=defineProps({
     hotType:{
         type:Number
     }
 })
+const TYPEMAP={
+    1:'24小时热榜',
+    2:'周热榜'
+}
+const title=computed(()=>TYPEMAP[props.hotType])
 
 const route = useRoute()
 const hotList = ref([])
@@ -27,7 +32,7 @@ const getHotList = async () => {
         id: route.params.id,
         type: 1
     })
-    hotList = res
+    hotList.value = res
 }
 onMounted(()=>getHotList())
 </script>
