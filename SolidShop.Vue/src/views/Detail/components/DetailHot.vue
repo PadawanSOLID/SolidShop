@@ -33,7 +33,7 @@ const getHotList = async () => {
         type: 1
     })
     hotList.value = res
-}
+}   
 onMounted(()=>getHotList())
 </script>
 

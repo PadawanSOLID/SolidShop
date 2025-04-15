@@ -13,12 +13,14 @@
                 <i class="iconfont icon-search"></i>
                 <input type="text" placeholder="搜一搜" />
             </div>
+            <HeaderCart/>
         </div>
     </header>
 </template>
 
 <script setup>
 import { useCategoryStore } from '@/stores/useCounterStore';
+import HeaderCart from './HeaderCart.vue';
 const categoryStore = useCategoryStore()
 </script>
 
