@@ -169,6 +169,51 @@ new(){Id = 0, Name = "推荐", ParentId = -1, IsShown = true, CreateTime = DateT
             return Ok(cwg);
         }
 
+        [HttpGet("/api/goods")]
+        public ActionResult<GoodWithDetail> GetGoods(int id)
+        {
+            var good = new GoodWithDetail
+            {
+                Id = id,
+                Name = goods[id].Item1,
+                Price =Convert.ToDouble( goods[id].Item2),
+                Brand = new Brand
+                {
+                    Name = "小米"
+                },
+                CollectCount = 100,
+                SalesCount=200,
+                CommentCount=300,
+                Desc = "这是商品的描述",
+                OldPrice=120,
+                Categories = [
+                   category[1],
+                   category[0]
+                    ],
+                Details =  new GoodDetail
+                    {
+                        Properties =
+                        [
+                            new GoodProperty
+                            {
+                                Name = "颜色",
+                                Value = "红色"
+                            },
+                            new GoodProperty
+                            {
+                                Name = "尺寸",
+                                Value = "L"
+                            }
+                        ],
+                        Pictures =
+                        [
+                            "/src/assets/images/shoe1.jpg",
+                            "/src/assets/images/shoe2.jpg"
+                        ]
+                    }
+            };
+            return Ok(good);
+        }
 
 
     }

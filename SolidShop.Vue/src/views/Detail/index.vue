@@ -6,18 +6,17 @@
                     <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                     <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1]?.id}` }">{{
                         goods.categories[1]?.name }}</el-breadcrumb-item>
-                    <el-breadcrumb-item
-                        :to="{ path: `/category/sub/${goods.categories[0]?.id}` }">{{ goods.categories[0]?.name
-                        }}</el-breadcrumb-item>
-                    <el-breadcrumb-item>抓绒保暖，毛毛虫子儿童运动鞋</el-breadcrumb-item>
-
+                    <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories[0]?.id}` }">
+                        {{ goods.categories[0]?.name }}
+                    </el-breadcrumb-item>
+                    <el-breadcrumb-item>{{ goods.name }}</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
             <div class="info-container">
                 <div>
                     <div class="goods-info">
                         <div class="media">
-                            <ImageView/>
+                            <ImageView :imageList="goods.details.pictures" />
                             <ul class="goods-sales">
                                 <li>
                                     <p>销量人气</p>
@@ -63,8 +62,12 @@
                                     </dd>
                                 </dl>
                             </div>
+                            <!-- sku组件 -->
+                            <!-- 数据组件 -->
+                            <el-input-number v-model="count" @change="handleChange" />
+                            <!-- 按钮组件 -->
                             <div>
-                                <el-button size="large" class="btn">加入购物车</el-button>
+                                <el-button size="large" class="btn" @click="addCart">加入购物车</el-button>
                             </div>
                         </div>
                         <div class="goods-footer">
@@ -85,8 +88,8 @@
                                 </div>
                             </div>
                             <div class="goods-aside">
-                                <DetailHot :hotType="1"/>
-                                <DetailHot :hotType="2"/>
+                                <DetailHot :hotType="1" />
+                                <DetailHot :hotType="2" />
                             </div>
                         </div>
 
@@ -103,12 +106,30 @@ import { getDetail } from '@/apis/detail';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import DetailHot from './components/DetailHot.vue';
-import ImageView from '@/components/ImageView/index.vue';
+import { useCartStore } from '@/stores/cartStore'
+const cartStore=useCartStore()
+const count = ref(1)
+const countChange = (count) => {
+    console.log(count)
+}
+const addCart = () => {
+    cartStore.addCart({
+        id:goods.value.id,
+        name:goods.value.name,
+        picture:goods.value.details.pictures[0],
+        price:goods.value.price,
+        count:count.value,
+    })
+}
 const route = useRoute()
 const goods = ref({})
 const getGoods = async () => {
     const res = await getDetail(route.params.id)
+    console.log(res)
     goods.value = res
+}
+const skuChange = (sku) => {
+
 }
 onMounted(() => getGoods())
 </script>
