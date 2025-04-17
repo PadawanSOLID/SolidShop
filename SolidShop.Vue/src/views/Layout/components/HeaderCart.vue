@@ -1,7 +1,7 @@
 <template>
     <div class="cart">
-        <a href="#" class="curr">
-            <i class="iconfont icon-cart1"><em>2</em></i>
+        <a href="/cartList" class="curr">
+            <i class="iconfont icon-cart"><em>2</em></i>
         </a>
         <div class="layer">
             <div class="list">
@@ -22,12 +22,12 @@
                         </div>
 
                     </RouterLink>
-                    <i class="iconfont icon-close-new" @click="storeToRefs.delCart(i.id)"></i>
+                    <i class="iconfont icon-close" @click="cartStore.delCart(i.id)"></i>
                 </div>
                 <div class="foot">
                     <div class="total">
-                        <p>共10件商品</p>
-                        <p>&yen; 100.00</p>
+                        <p>共 {{cartStore.allCount}} 件商品</p>
+                        <p>&yen; {{cartStore.allPrice}}</p>
                     </div>
                     <el-button size="larget" type="primary">去购物车结算</el-button>
                 </div>
@@ -38,14 +38,16 @@
 
 <script setup>
 import { useCartStore } from '@/stores/cartStore';
-const cartStore=useCartStore()
+import { computed } from 'vue';
+const cartStore = useCartStore()
+
 </script>
 
 <style lang="scss" scoped>
 .cart {
     width: 50px;
-    position: relative;
     z-index: 600;
+    position: relative;
 
     &:hover {
         .layer {
@@ -55,19 +57,22 @@ const cartStore=useCartStore()
     }
 
     .curr {
+        display: block;
+        width: 32px;
         height: 32px;
         line-height: 32;
         text-align: center;
-        position: relative;
-        display: block;
 
         .icon-cart {
+            position: absolute;
+            right: 0;
+            display: inline-block;
+            top: -330px;
             font-size: 22px;
         }
 
         em {
             font-style: normal;
-            position: absolute;
             right: 0;
             top: 0;
             padding: 1px 6px;
@@ -78,6 +83,8 @@ const cartStore=useCartStore()
             border-radius: 10px;
             font-family: Arial;
         }
+
+
     }
 
     .layer {
@@ -87,6 +94,7 @@ const cartStore=useCartStore()
         position: absolute;
         height: 400px;
         width: 400px;
+        background: #fff;
 
         .list {
             height: 310px;
@@ -117,6 +125,46 @@ const cartStore=useCartStore()
                 padding: 10px 0;
                 position: relative;
 
+                a {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        height: 80w 80px;
+                    }
+
+                    .center {
+                        padding: 0 10px;
+                        width: 200px;
+
+                        .name {
+                            font-size: 16px;
+                        }
+
+                        .attr {
+                            color: #999;
+                            padding-top: 5px;
+                        }
+                    }
+
+                    .right {
+                        width: 100px;
+                        padding-right: 20px;
+                        text-align: center;
+
+                        .price {
+                            font-size: 16px;
+                            color: $priceColor;
+                        }
+
+                        .count {
+                            color: #999;
+                            margin-top: 5px;
+                            font-size: 16px;
+                        }
+                    }
+                }
+
                 &:hover {
                     i {
                         opacity: 1;
@@ -128,8 +176,6 @@ const cartStore=useCartStore()
     }
 
 }
-
-
 
 .total {
     padding-left: 10px;
@@ -151,56 +197,16 @@ const cartStore=useCartStore()
     bottom: 0;
     height: 70px;
     width: 100%;
-}
 
-i {
-    position: absolute;
-    bottom: 38px;
-    right: 0;
-    opacity: 0;
-    color: #666;
-    transform: all 0.5s;
-}
-
-
-
-a {
-    display: flex;
-    align-items: center;
-
-    img {
-        height: 80w 80px;
+    i {
+        position: absolute;
+        bottom: 38px;
+        right: 0;
+        opacity: 0;
+        color: #666;
+        transform: all 0.5s;
     }
 
-    .center {
-        padding: 0 10px;
-        width: 200px;
 
-        .name {
-            font-size: 16px;
-        }
-
-        .attr {
-            color: #999;
-            padding-top: 5px;
-        }
-    }
-
-    .right {
-        width: 100px;
-        padding-right: 20px;
-        text-align: center;
-
-        .price {
-            font-size: 16px;
-            color: $priceColor;
-        }
-
-        .count {
-            color: #999;
-            margin-top: 5px;
-            font-size: 16px;
-        }
-    }
 }
 </style>
